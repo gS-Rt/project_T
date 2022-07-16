@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
     public float moveSpeed;
     public float moveSpeedWithJump;
     public Vector3 movement;
-    float hMove;
+    float hMove; //좌우이동, 왼쪽은 -1
     float vMove;
 
     public bool jumpTrigger; //점프함수 트리거
@@ -17,14 +17,21 @@ public class PlayerMove : MonoBehaviour
 
     private Rigidbody rigid;
 
+    private Animator animator; //애니메이션 컨트롤러
+
+    Vector3 theScale; //좌우반전용
+    bool isRight;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
 }
     void Start()
     {
         canJump = false;
         jumpTrigger = false;
+        isRight = false;
     }
 
     void Update()
@@ -32,6 +39,35 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && canJump) //점프 가능할 때만 작동
         {
             jumpTrigger = true; //점프 트리커 켜짐
+        }
+
+        if ((hMove == 0) && (vMove == 0)||(isJump==true)) //안움직이거나 점프일 때
+        {
+            animator.SetBool("isWalking", false);
+        }
+        else
+        {
+            animator.SetBool("isWalking", true);
+        }
+
+        if (hMove < 0)
+            isRight = true;
+        if (hMove > 0)
+            isRight = false;
+
+        if (hMove<0&& transform.localScale.x>0)
+        {
+            theScale = transform.localScale;
+            theScale.x *= -1;
+
+            transform.localScale = theScale;
+        }
+        else if (hMove > 0 && transform.localScale.x < 0)
+        {
+            theScale = transform.localScale;
+            theScale.x *= -1;
+
+            transform.localScale = theScale;
         }
     }
 
@@ -75,6 +111,7 @@ public class PlayerMove : MonoBehaviour
         rigid.MovePosition(transform.position + movement);
 
         //rigid.velocity = movement; //벡터 추가로 움직임
+
 
     }
 

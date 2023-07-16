@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    public GameObject player;
+    public GameObject player; //대상 오브젝트 삽입
 
     public float cameraSetX = 0;
     public float cameraSetY = 25;
-    public float cameraSetZ = -35;
+    public float cameraSetZ = -35; //대상 오브젝트로부터 얼마나 x,y,z 좌표만큼 카메라가 떨어져 있을 건지 초기 설정
 
-    public float cameraSpeed = 10;
+    public float cameraSpeed = 10; //카메라 움직이는 속도
 
     Vector3 cameraPosition;
 

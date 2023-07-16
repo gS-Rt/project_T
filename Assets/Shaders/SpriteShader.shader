@@ -119,7 +119,7 @@ Shader "Sprites/Custom/SpriteShader"
         Fallback "Transparent/VertexLit"
 }
 */
-/*
+
 Shader "Custom/SpriteShader" {
     Properties{
         _Color("Color", Color) = (1,1,1,1)
@@ -174,8 +174,8 @@ Shader "Custom/SpriteShader" {
             FallBack "Diffuse"
 } //위의 두 코드 섞음, 스켈레톤 애니메이션 스프라이트 겹침 문제 수정
   //스프라이트 우선순위 렌더링 안되는 문제 포함된 코드
-*/
 
+/*
 Shader "Custom/SpriteShader" {
     Properties
     {
@@ -239,4 +239,4 @@ Shader "Custom/SpriteShader" {
         }
 
         Fallback "Transparent/VertexLit"
-}
+}*/
